@@ -1,0 +1,36 @@
+# 環境変数・機密情報
+.env
+.env.*
+!.env.example
+
+# Node.js
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ログファイル
+*.log
+
+# エディタ設定
+.vscode/
+.idea/
+
+# OSが生成するファイル
+.DS_Store
+Thumbs.db
+
+# 一時ファイル
+*.tmp
+*.bak
+
+# Docker関連のローカル設定
+docker-compose.override.yml
+
+# phpMyAdmin（今回の開発ではGit管理しない）
+/htdocs/phpMyAdmin/
+
+# PHPの依存ライブラリ
+**/vendor/
+
