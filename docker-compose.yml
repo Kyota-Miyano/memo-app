@@ -77,6 +77,23 @@ services:
     # MySQLコンテナに依存
     depends_on:
       - mysql
+  # phpMyAdminコンテナ
+  phpmyadmin:
+    # phpMyAdminのDockerイメージ
+    image: phpmyadmin:latest
+
+    # ブラウザからアクセスするためのポート
+    ports:
+      - "8081:80"
+
+    # 接続先のMySQL
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+
+    # MySQLコンテナに依存
+    depends_on:
+      - mysql
 volumes:
   # 名前付きボリュームの作成
   mysqldata:
