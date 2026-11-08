@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    // Node.jsで実行するJavaScriptのバージョン
+    "target": "ES2022",
+
+    // Node.jsで扱いやすいCommonJS形式
+    "module": "CommonJS",
+
+    // TypeScriptファイルの保存先
+    "rootDir": "./src",
+
+    // コンパイル後のJavaScript出力先
+    "outDir": "./dist",
+
+    // 厳密な型チェックを有効にする
+    "strict": true,
+
+    // CommonJSとES Modulesの互換性を確保する
+    "esModuleInterop": true,
+
+    // ライブラリの型定義チェックを省略する
+    "skipLibCheck": true,
+
+    // ファイル名の大文字・小文字を厳密に扱う
+    "forceConsistentCasingInFileNames": true,
+
+    // Node.jsの型定義を使用する
+    "types": ["node"]
+  },
+
+  // コンパイル対象
+  "include": ["src/**/*.ts"],
+
+  // コンパイル対象から除外
+  "exclude": ["node_modules", "dist"]
+}

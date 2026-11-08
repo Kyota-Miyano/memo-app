@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>メモ帳SPA</title>
+  </head>
+  <body>
+    <!-- メモ帳アプリ全体 -->
+     <div id="app">
+        <!-- 左側：メモ一覧 -->
+        <aside class="memo-sidebar"> 
+          <div class="sidebar-header">
+            <!-- 新規作成ボタン -->
+            <button id="new-memo-btn" type="button">＋ 新規</button>
+            <!-- 並び替え -->
+            <select id="sort-select" aria-label="メモの並び替え">
+              <option value="updated-desc">更新日時：新しい順</option>
+              <option value="updated-asc">更新日時：古い順</option>
+              <option value="created-desc">作成日時：新しい順</option>
+              <option value="created-asc">作成日時：古い順</option>
+              <option value="title-asc">タイトル：昇順</option>
+              <option value="title-desc">タイトル：降順</option>
+            </select>
+          </div>
+          <!-- メモ一覧の表示領域 -->
+          <div id="memo-list" class="memo-list">
+            <!-- TypeScriptでメモ一覧を描画 -->
+          </div>
+        </aside>
+
+        <!-- 右側：メモ編集エリア -->
+        <main class="memo-editor">
+          <!-- タイトル入力 -->
+          <div class="editor-title">
+            <label for="memo-title">タイトル</label>
+            <input type="text" id="memo-title" maxlength="100" placeholder="タイトルを入力">
+          </div>
+          <!-- 本文入力 -->
+          <div class="editor-content">
+            <label for="memo-content">本文</label>
+            <textarea id="memo-content" maxlength="10000" placeholder="メモを入力してください"></textarea>
+          </div>
+          <!-- 編集操作 -->
+          <div class="editor-footer">
+            <button id="save-btn" type="button">保存</button>
+            <button id="delete-btn" type="button">削除</button>
+            <!-- 保存結果などを表示 -->
+            <span id="status-message" role="status" aria-live="polite"></span>
+          </div>
+        </main>
+     </div>
+     <!-- TypeScriptのエントリーポイント -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
