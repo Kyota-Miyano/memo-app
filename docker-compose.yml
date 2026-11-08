@@ -43,57 +43,14 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      # 名前付きボリュームを MySQL コンテナに紐づける
+      # MySQLのデータを永続化
       - mysqldata:/var/lib/mysql
+      # MySQLの設定ファイル
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-      # - ./docker/mysql/sql:/docker-entrypoint-initdb.d
+      # 初回起動時にメモ帳用テーブルを自動作成
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     ports:
       - 3306:3306
-  # メモ帳アプリ（Node.js）の定義
-  memo-app:
-    # Dockerfileを使用してイメージを作成
-    build:
-      context: ./htdocs/memo-app
-      dockerfile: Dockerfile
-      
-    # ホスト側とコンテナ側のポートを接続
-    ports:
-      - "3000:3000"
-      
-    # アプリケーションのソースコードを共有
-    volumes:
-      - ./htdocs/memo-app:/app
-      - /app/node_modules
-      
-    # MySQLコンテナとの接続情報
-    environment:
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_USER: ${MYSQL_USER}
-      DB_PASSWORD: ${MYSQL_PASSWORD}
-      DB_NAME: ${MYSQL_DATABASE}
-      TZ: Asia/Tokyo
-      
-    # MySQLコンテナに依存
-    depends_on:
-      - mysql
-  # phpMyAdminコンテナ
-  phpmyadmin:
-    # phpMyAdminのDockerイメージ
-    image: phpmyadmin:latest
-
-    # ブラウザからアクセスするためのポート
-    ports:
-      - "8081:80"
-
-    # 接続先のMySQL
-    environment:
-      PMA_HOST: mysql
-      PMA_PORT: 3306
-
-    # MySQLコンテナに依存
-    depends_on:
-      - mysql
 volumes:
   # 名前付きボリュームの作成
   mysqldata:
